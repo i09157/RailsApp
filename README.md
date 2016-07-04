@@ -23,4 +23,8 @@ Things you may want to cover:
 
 * マイグレーションについて
 * http://qiita.com/Kaki_Shoichi/items/077d0a282255cd92cff3
-* 
+
+* デザインの変更
+* http://ruby-rails.hatenadiary.com/entry/20140801/1406818800
+
+
