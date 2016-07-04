@@ -21,4 +21,6 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+* マイグレーションについて
+* http://qiita.com/Kaki_Shoichi/items/077d0a282255cd92cff3
+* 
