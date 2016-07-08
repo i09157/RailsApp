@@ -5,7 +5,7 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version　2.3.1
 
 * System dependencies
 
@@ -21,4 +21,10 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+* マイグレーションについて
+* http://qiita.com/Kaki_Shoichi/items/077d0a282255cd92cff3
+
+* デザインの変更
+* http://ruby-rails.hatenadiary.com/entry/20140801/1406818800
+
+
