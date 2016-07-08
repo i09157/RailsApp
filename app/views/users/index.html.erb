@@ -5,8 +5,12 @@
 <table>
   <thead>
     <tr>
-      <th>UserName</th>
-      <th>UserScore</th>
+      <th>id</th>
+      <th>Name</th>
+      <th>Pass</th>
+      <th>Win</th>
+      <th>Draw</th>
+      <th>Lose</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,8 +18,12 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
+        <td><%= user.id %></td>
         <td><%= user.name %></td>
-        <td><%= user.score %></td>
+        <td><%= user.pass %></td>
+        <td><%= user.win %></td>
+        <td><%= user.draw %></td>
+        <td><%= user.lose %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>

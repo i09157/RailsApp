@@ -1,13 +1,37 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>id:</strong>
+  <%= @user.id %>
+</p>
+
+
+<p>
   <strong>Name:</strong>
   <%= @user.name %>
 </p>
 
 <p>
+  <strong>Pass:</strong>
+  <%= @user.pass %>
+</p>
+
+
+<p>
   <strong>Score:</strong>
   <%= @user.score %>
+</p>
+<p>
+  <strong>Win:</strong>
+  <%= @user.win %>
+</p>
+<p>
+  <strong>Draw:</strong>
+  <%= @user.draw %>
+</p>
+<p>
+  <strong>Lose:</strong>
+  <%= @user.lose %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
