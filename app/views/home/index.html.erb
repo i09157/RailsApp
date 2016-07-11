@@ -1,2 +1,23 @@
-<h1>Home#index</h1>
+<h1>Home</h1>
+
+<%#= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+<html>
+<body>
+<header>
+    <nav>
+        <% if account_signed_in? %>
+            <%= link_to 'プロフィール変更', edit_account_registration_path %>
+            <%= link_to 'ログアウト', destroy_account_session_path, method: :delete %>
+            <%= current_account.email %>
+        <% else %>
+            <%= link_to 'サインアップ', new_account_registration_path %>
+            <%= link_to 'ログイン', new_account_session_path %>
+        <% end %>
+    </nav>
+</header>
+
+<%= link_to  'ユーザ一覧',  users_path %>
+
+</body>
+</html>
 <p>Find me in app/views/home/index.html.erb</p>
