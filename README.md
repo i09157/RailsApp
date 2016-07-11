@@ -28,3 +28,6 @@ Things you may want to cover:
 * http://ruby-rails.hatenadiary.com/entry/20140801/1406818800
 
 
+* ソケット通信
+* http://blog.aqutras.com/entry/2016/04/27/210000
+* 
