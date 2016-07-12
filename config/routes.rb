@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'rooms/show'
+
   root to: "home#index"
 
   # get 'home/index'
