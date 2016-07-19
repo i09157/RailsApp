@@ -3,10 +3,14 @@
 <div id="messages">
     <%= render @messages %>
 </div>
-
 <form>
     <label> message: </label><br>
     <input type="text" data-behavior="room_speaker">
 </form>
 
+
+<%= @lists.count %>
+<%= flash[:user1] %>
+<%= flash[:user2] %>
+<%= flash[:result] %>
 <p>Find me in app/views/rooms/show.html.erb</p>
