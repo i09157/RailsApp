@@ -2,11 +2,12 @@
 
 <div id="messages">
     <%= render @messages %>
+    <% @temp.each do |temp| %>
+        <%= temp.content %>
+        <%= temp.created_at %>
+    <% end %>
 </div>
-
-<form>
-    <label> message: </label><br>
-    <input type="text" data-behavior="room_speaker">
-</form>
-
-<p>Find me in app/views/rooms/show.html.erb</p>
+<label>message:</label>
+<input type="text" data-behavior='room_speaker'>
+<input type="radio" value="ぐー" data-behavior='room_speaker'><label>start</label>
+<p>Find me in app/views/rooms/show.html.erb</p>:
