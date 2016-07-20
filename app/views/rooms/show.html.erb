@@ -1,7 +1,12 @@
 <h1>Rooms#show</h1>
 
 <div id="messages">
-    <%= render @messages %>
+  <table>
+    <tr>
+      <th>Account_id</th><th>content</th>
+    </tr>
+    <%= render @lists %>
+  </table>
 </div>
 <form>
     <label> message: </label><br>

@@ -7,12 +7,15 @@ class RoomsController < ApplicationController
        first,second = @lists
        flash.now[:first] = "first:#{first.content}"
        flash.now[:second] = "second:#{second.content}"
+       # @account1 =Account.find(email: first.email)
+       # @account2 =Account.find(email: second.email)
 
        if first.content == "グー" then
           if second.content == "チョキ" then
-            flash.now[:result] = "fisrt win"
+            flash.now[:result] = first.email + ":fist win"
+            # @account1.user.win += 1.0一致したユーザにwin１加算
           elsif second.content == "パー" then
-            flash.now[:result] = "second win"
+            flash.now[:result] = second.email + ":second win"
           else
             flash.now[:result] = "draw"
           end
