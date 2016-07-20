@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
   def show
     @messages = Message.all
-    @lists = Message.where(created_at: 1.minute.ago..Time.current)
+    @lists = Message.where(created_at: 10.second.ago..Time.current)
 
     if @lists.count == 2 then #じゃんけん判定
        first,second = @lists
@@ -16,7 +16,7 @@ class RoomsController < ApplicationController
           else
             flash.now[:result] = "draw"
           end
-       elsif fisrt.content == "チョキ" then
+       elsif first.content == "チョキ" then
           if second.content == "パー" then
             flash.now[:result] = "first win"
           elsif second.content == "グー" then
