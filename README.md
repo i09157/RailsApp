@@ -30,4 +30,5 @@ Things you may want to cover:
 
 * ソケット通信
 * http://blog.aqutras.com/entry/2016/04/27/210000
-* 
+* デプロイ時に確認しておく
+* http://qiita.com/jnchito/items/aec75fab42804287d71b
