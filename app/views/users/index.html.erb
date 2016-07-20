@@ -7,7 +7,6 @@
     <tr>
       <th>id</th>
       <th>Name</th>
-      <th>Pass</th>
       <th>Win</th>
       <th>Lose</th>
       <th>Draw</th>
@@ -17,14 +16,13 @@
 
   <tbody>
     <% @account.each do |account| %>  
-       <% @user = User.find_by(:id => account.id) %>
+        <% @user = User.find_by(:id => account.id) %>
         <tr>
         <td><%= account.id %></td>
         <td><%= account.email %></td>
-        <td><%= account.password %></td>
-        <td><%= @user[:win] %></th>
-        <td><%= @user[:lose] %></th>
-        <td><%= @user[:draw] %></th>
+        <td><%= @user[:win] %></td>
+        <td><%= @user[:lose] %></td>
+        <td><%= @user[:draw] %></td>
             
     </tr>
     <% end %>
