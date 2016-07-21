@@ -8,27 +8,11 @@
         <% if account_signed_in? %>
             <%= link_to 'プロフィール変更', edit_account_registration_path %>
             <%= link_to 'ログアウト', destroy_account_session_path, method: :delete %>
-            <table>
-              <thead>
-                <tr>
-                  <th>id</th>
-                  <th>Mail</th>
-                  <th>Win</th>
-                  <th>Draw</th>
-                  <th>Lose</th>
-                  <th colspan="3"></th>
-                </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                    <td><%= current_account.id %></td>
-                    <td><%= current_account.email %></td>
-                    <td><%= current_account.win %></td>
-                    <td><%= current_account.draw %></td>
-                    <td><%= current_account.lose %></td>
-                  </tr>
-              </tbody>
-            </table>
+                  <td><%= current_account.email %></td>
+                  <td><%= current_account.win %>勝:</td>
+                  <td><%= current_account.lose %>負:</td>
+                  <td><%= current_account.draw %>分:</td>
+                  <td>rate<%= current_account.rate %></td>
 
         <% else %>
             <%= link_to 'サインアップ', new_account_registration_path %>
@@ -45,13 +29,16 @@
 <p>
 
 <table>
+  <caption align="left">ユーザ一覧</caption>
   <thead>
     <tr>
       <th>id</th>
       <th>Email</th>
-      <th>Win</th>
-      <th>Draw</th>
-      <th>Lose</th>
+      <th><%= sort_link(@search, :win,'WIN') %></th>
+      <th><%= sort_link(@search, :draw,'DRAW') %></th>
+      <th><%= sort_link(@search, :lose,'LOSE') %></th>
+      <!-- <th>試合回数<th> -->
+      <th><%= sort_link(@search, :rate,'RATE') %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -64,6 +51,8 @@
         <td><%= account.win %></td>
         <td><%= account.draw %></td>
         <td><%= account.lose %></td>
+        <!-- <td><%= account.lose + account.draw + account.win  %></td> -->
+        <td><%= account.rate  %></td>
       </tr>
     <% end %>
   </tbody>
