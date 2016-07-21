@@ -1,5 +1,6 @@
 <h1>Rooms#show</h1>
-
+<%= link_to 'ホームページ', root_path %>
+<p>
 <div id="messages">
   <table>
     <tr>
@@ -13,24 +14,6 @@
     <input type="text" data-behavior="room_speaker">
 </form>
 
-<% if  @lists.count ==2 %>
-  <tr>
-    <th>accout1:</th>
-    <th><%= @account1.email %></th>
-  </tr>
-  <tr>
-    <th>accout1_win:</th>
-    <th><%= @account1.win %></th>
-  </tr>
-
-  <tr>
-    <th>account2:</th>
-    <th><%= @account2.email %></th>
-  </tr>
-<% end %>
-
 </br>
-<%= flash[:user1] %>
-<%= flash[:user2] %>
 <%= flash[:result] %>
 <p>Find me in app/views/rooms/show.html.erb</p>
