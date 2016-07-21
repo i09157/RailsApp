@@ -4,9 +4,4 @@ class RoomsController < ApplicationController
     @messages = Message.all
     @temp = Message.where("created_at>@time")
   end
-
-  def start
-    @start = Time.now
-  end
-
 end
