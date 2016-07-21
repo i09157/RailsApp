@@ -13,30 +13,53 @@ class RoomsController < ApplicationController
 
        if first.content == "グー" then
           if second.content == "チョキ" then
-            flash.now[:result] = first.email + ":fist win"
-            win = @account1.win + 1.0
-            @account1.update(win: win)
+            flash.now[:result] = first.email + ":win"
+            @account1.update(win: @account1.win + 1.0)
+            @account2.update(lose: @account2.lose + 1.0)
 
           elsif second.content == "パー" then
-            flash.now[:result] = second.email + ":second win"
-          else
+            flash.now[:result] = second.email + ":win"
+            @account2.update(win: @account2.win + 1.0)
+            @account1.update(lose: @account1.lose + 1.0)
+
+          elsif second.content == "グー" then
             flash.now[:result] = "draw"
+            @account1.update(draw: @account1.draw + 1.0)
+            @account2.update(draw: @account2.draw + 1.0)
+
           end
        elsif first.content == "チョキ" then
           if second.content == "パー" then
-            flash.now[:result] = "first win"
+            flash.now[:result] = first.email + ":win"
+            @account1.update(win: @account1.win + 1.0)
+            @account2.update(lose: @account2.lose + 1.0)
+
           elsif second.content == "グー" then
-            flash.now[:result] = "second win"
-          else
+            flash.now[:result] = second.email + ":win"
+            @account2.update(win: @account2.win + 1.0)
+            @account1.update(lose: @account1.lose + 1.0)
+
+          elsif second.content == "チョキ" then
             flash.now[:result] = "draw"
+            @account1.update(draw: @account1.draw + 1.0)
+            @account2.update(draw: @account2.draw + 1.0)
+
           end
-       else
+       elsif first.content == "パー" then
          if second.content == "グー" then
-           flash.now[:result] = "first win"
+           flash.now[:result] = first.email + ":win"
+           @account1.update(win: @account1.win + 1.0)
+           @account2.update(lose: @account2.lose + 1.0)
+
          elsif second.content == "チョキ" then
-           flash.now[:result] = "second win"
-         else
+           flash.now[:result] = second.email + ":win"
+           @account2.update(win: @account2.win + 1.0)
+           @account1.update(lose: @account1.lose + 1.0)
+
+          elsif second.content == "パー" then
            flash.now[:result] = "draw"
+           @account1.update(draw: @account1.draw + 1.0)
+           @account2.update(draw: @account2.draw + 1.0)
          end
        end
 
