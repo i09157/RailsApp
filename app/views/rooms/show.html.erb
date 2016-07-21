@@ -13,8 +13,18 @@
     <input type="text" data-behavior="room_speaker">
 </form>
 
+<% if  @lists.count ==2 %>
+  <tr>
+    <th>accout1:</th>
+    <th><%= @account1.email %></th>
+  </tr>
+  <tr>
+    <th>account2:</th>
+    <th><%= @account2.email %></th>
+  </tr>
+<% end %>
 
-<%= @lists.count %>
+</br>
 <%= flash[:user1] %>
 <%= flash[:user2] %>
 <%= flash[:result] %>

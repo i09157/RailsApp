@@ -1,14 +1,14 @@
 class RoomsController < ApplicationController
   def show
     @messages = Message.all
-    @lists = Message.where(created_at: 10.second.ago..Time.current)
+    @lists = Message.where(created_at: 10.second.ago..Time.now)
 
     if @lists.count == 2 then #じゃんけん判定
        first,second = @lists
        flash.now[:first] = "first:#{first.content}"
        flash.now[:second] = "second:#{second.content}"
-       # @account1 =Account.find(email: first.email)
-       # @account2 =Account.find(email: second.email)
+       @account1 =Account.find_by(email: first.email)
+       @account2 =Account.find_by(email: second.email)
 
        if first.content == "グー" then
           if second.content == "チョキ" then
