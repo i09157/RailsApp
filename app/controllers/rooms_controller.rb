@@ -10,10 +10,13 @@ class RoomsController < ApplicationController
        @account1 =Account.find_by(email: first.email)
        @account2 =Account.find_by(email: second.email)
 
+
        if first.content == "グー" then
           if second.content == "チョキ" then
             flash.now[:result] = first.email + ":fist win"
-            # @account1.user.win += 1.0一致したユーザにwin１加算
+            win = @account1.win + 1.0
+            @account1.update(win: win)
+
           elsif second.content == "パー" then
             flash.now[:result] = second.email + ":second win"
           else
