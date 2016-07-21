@@ -1,6 +1,12 @@
 class RoomsController < ApplicationController
   def show
+    @time = Time.now
     @messages = Message.all
-    @temp = Message.where("created_at>'2016-07-19 10:41:18 UTC'")
-  end 
+    @temp = Message.where("created_at>@time")
+  end
+
+  def start
+    @start = Time.now
+  end
+
 end

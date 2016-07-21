@@ -16,4 +16,8 @@ $(document).on 'keypress', '[data-behavior~=room_speaker]', (event) ->
         App.room.speak event.target.value
         event.target.value = ''
         event.preventDefault()
+    else
+        App.room.speak event.target.value = 'start'
+        event.target.value = ''
+        event.preventDefault()
 
