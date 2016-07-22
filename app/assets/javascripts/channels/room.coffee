@@ -1,9 +1,18 @@
 App.room = App.cable.subscriptions.create "RoomChannel",
   connected: ->
-    # Called when the subscription is ready for use on the server
+    @room_connect()
+  # # Called when the WebSocket connection is closed
+  # disconnected: ->
+    # @disappear()
+  # # Called when the subscription is rejected by the server
 
-  disconnected: ->
-    # Called when the subscription has been terminated by the server
+  room_connect: ->
+    @perform 'room_connect'
+    # @perform 'appear', name: current_account.email
+
+  # disappear: ->
+    # @perform 'disappear'
+    # @perform 'appear', name: current_account.email
 
   received: (data) ->
     $('#messages').append data['message']

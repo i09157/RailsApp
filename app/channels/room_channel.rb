@@ -1,22 +1,37 @@
 # Be sure to restart your server when you modify this file. Action Cable runs in a loop that does not support auto reloading.
 class RoomChannel < ApplicationCable::Channel
   def subscribed
+    # current_account.appear
     stream_from "room_channel"
     stream_for current_account
   end
 
   def unsubscribed
+    # ActionCable.server.broadcast 'room_channel', {disconnection: true}
+
+    #  current_account.disappear
     # Any cleanup needed when channel is unsubscribed
   end
 
+  def room_connect
+    ActionCable.server.broadcast 'room_channel', message: "#{current_account.email}が入室しました"
+  end
+
+  # def disappear
+  #    ActionCable.server.broadcast 'room_channel', message: "退室しました"
+  # end
+
+  # def disappear
+  #   ActionCable.server.broadcast 'room_channel', message: "退室しました"
+  # end
 
   def speak(data) #クライアントサイドから送信されたメッセージを受信
-    Message.create! email: current_account.email ,content: data['message']
-    @lists = Message.where(created_at: 5.second.ago..Time.now) #現時刻から二件
 
-    if @lists.count == 1 then
-      ActionCable.server.broadcast 'room_channel', message: "挑戦者があらわれました"
-    elsif @lists.count >=   2 then
+    Message.create! email: current_account.email ,content: data['message']
+    @lists = Message.where(created_at: 5  .second.ago..Time.now) #現時刻から二件
+    if @lists.count < 2 then
+      # ActionCable.server.broadcast 'room_channel', message: "あっ！勝負がしかけられました"
+    elsif @lists.count ==  2  then
       first,second = @lists
       @account1 =Account.find_by(email: first.email)
       @account2 =Account.find_by(email: second.email)
