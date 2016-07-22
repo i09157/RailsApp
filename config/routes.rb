@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'rooms/show'
 
   root to: "home#index"
 
@@ -8,6 +7,8 @@ Rails.application.routes.draw do
   get 'home/authentication'
 
   devise_for :accounts
+
+  get 'rooms/show'
 
 #   devise_scope :account do
 #     get '/accounts/sign_out' => 'devise/sessions#destroy'
