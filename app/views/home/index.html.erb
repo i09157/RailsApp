@@ -35,8 +35,8 @@
       <th>Ranking</th>
       <th>Email</th>
       <th><%= sort_link(@search, :win,'WIN') %></th>
-      <th><%= sort_link(@search, :draw,'DRAW') %></th>
       <th><%= sort_link(@search, :lose,'LOSE') %></th>
+      <th><%= sort_link(@search, :draw,'DRAW') %></th>
       <!-- <th>試合回数<th> -->
       <th><%= sort_link(@search, :rate,'RATE') %></th>
       <th colspan="3"></th>
@@ -49,8 +49,8 @@
         <td><%= count %></td>
         <td><%= account.email %></td>
         <td><%= account.win %></td>
-        <td><%= account.draw %></td>
         <td><%= account.lose %></td>
+        <td><%= account.draw %></td>
         <!-- <td><%= account.lose + account.draw + account.win  %></td> -->
         <td><%= account.rate  %></td>
       </tr>
