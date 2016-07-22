@@ -11,48 +11,66 @@ class RoomChannel < ApplicationCable::Channel
 
 
   def speak(data) #クライアントサイドから送信されたメッセージを受信
-      if @first.nil? then
-        @first = data['message']
-        @first_email = current_account.email
-        ActionCable.server.broadcast 'room_channel', message: @first_email
-      else
-        case @first
+    Message.create! email: current_account.email ,content: data['message']
+    @lists = Message.where(created_at: 5.second.ago..Time.now) #現時刻から二件
+
+    if @lists.count == 1 then
+      ActionCable.server.broadcast 'room_channel', message: "挑戦者があらわれました"
+    elsif @lists.count >=   2 then
+      first,second = @lists
+      @account1 =Account.find_by(email: first.email)
+      @account2 =Account.find_by(email: second.email)
+      if @account1 != @account2 then
+        case first.content
         when "グー" then
-          if data['message'] == "グー" then
+          if second.content == "グー" then
             ActionCable.server.broadcast 'room_channel', message: "引き分けなのだ"
-            @first = nil
-          elsif data['message'] == "チョキ" then
-            ActionCable.server.broadcast 'room_channel', message: "先攻の勝ち"
-            @first = nil
-          elsif data['message'] == "パー" then
-            ActionCable.server.broadcast 'room_channel', message: "後攻の勝ち"
-            @first = nil
+            @account1.update(draw: @account1.draw + 1.0)
+            @account2.update(draw: @account2.draw + 1.0)
+
+          elsif second.content == "チョキ" then
+            ActionCable.server.broadcast 'room_channel', message: @account1.email + " の勝ち"
+            @account1.update(win: @account1.win + 1.0)
+            @account2.update(lose: @account2.lose + 1.0)
+          elsif second.content == "パー" then
+            ActionCable.server.broadcast 'room_channel', message: @account2.email + " の勝ち"
+            @account2.update(win: @account2.win + 1.0)
+            @account1.update(lose: @account1.lose + 1.0)
           end
         when "チョキ" then
-          if data['message'] == "グー" then
-            ActionCable.server.broadcast 'room_channel', message: "後攻の勝ち"
-            @first = nil
-          elsif data['message'] == "チョキ" then
+          if second.content == "グー" then
+            ActionCable.server.broadcast 'room_channel', message: @account2.email + " の勝ち"
+            @account2.update(win: @account2.win + 1.0)
+            @account1.update(lose: @account1.lose + 1.0)
+          elsif second.content == "チョキ" then
             ActionCable.server.broadcast 'room_channel', message: "引き分けなのだ"
-            @first = nil
-          elsif data['message'] == "パー" then
-            ActionCable.server.broadcast 'room_channel', message: "先攻の勝ち"
-            @first = nil
+            @account1.update(draw: @account1.draw + 1.0)
+            @account2.update(draw: @account2.draw + 1.0)
+          elsif second.content == "パー" then
+            ActionCable.server.broadcast 'room_channel', message: @account1.email + " の勝ち"
+            @account1.update(win: @account1.win + 1.0)
+            @account2.update(lose: @account2.lose + 1.0)
           end
         when "パー" then
-          if data['message'] == "グー" then
-            ActionCable.server.broadcast 'room_channel', message: "先攻の勝ち"
-            @first = nil
-          elsif data['message'] == "チョキ" then
-            ActionCable.server.broadcast 'room_channel', message: "後攻の勝ち"
-            @first = nil
-          elsif data['message'] == "パー" then
+          if second.content == "グー" then
+            ActionCable.server.broadcast 'room_channel', message: @account1.email + " の勝ち"
+            @account1.update(win: @account1.win + 1.0)
+            @account2.update(lose: @account2.lose + 1.0)
+          elsif second.content == "チョキ" then
+            ActionCable.server.broadcast 'room_channel', message: @account2.email + " の勝ち"
+            @account2.update(win: @account2.win + 1.0)
+            @account1.update(lose: @account1.lose + 1.0)
+          elsif second.content == "パー" then
             ActionCable.server.broadcast 'room_channel', message: "引き分けなのだ"
-            @first = nil
+            @account1.update(draw: @account1.draw + 1.0)
+            @account2.update(draw: @account2.draw + 1.0)
           end
         end
+      else
+        ActionCable.server.broadcast 'room_channel', message: "相手の選択を待っています..."
       end
-      Message.create! email: current_account.email ,content: data['message']
+
+    end
 
   end
 
