@@ -66,6 +66,9 @@ class RoomChannel < ApplicationCable::Channel
             @account2.update(draw: @account2.draw + 1.0)
           end
         end
+        @account1.update(rate: (@account1.win/(@account1.win+ @account1.lose + @account1.draw)).round(3))
+        @account2.update(rate: (@account2.win/(@account2.win+ @account2.lose + @account2.draw)).round(3))
+
       else
         ActionCable.server.broadcast 'room_channel', message: "相手の選択を待っています..."
       end
