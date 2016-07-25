@@ -92,5 +92,8 @@ class RoomChannel < ApplicationCable::Channel
 
   end
 
+  def timer(data)
+    ActionCable.server.broadcast 'room_channel', time: data['time']
+  end
 
 end

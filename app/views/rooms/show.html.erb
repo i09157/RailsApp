@@ -1,6 +1,12 @@
 <h1>Rooms#show</h1>
 <%= link_to 'ホームページ', root_path %>
 <p>
+  <table>
+  <tr>
+      <td><h1>Time</h1></td>
+      <td><h1 id="times">5</h1></td>
+  </tr>
+  </table>
 
   <table>
     <tr>
@@ -31,3 +37,7 @@
   <div id="messages">
     <%= render @lines %>
   </div>
+
+  <form name="timer">
+  <input type="button" name='btn' value="start" data-behavior='room_timer'>
+  </form>
