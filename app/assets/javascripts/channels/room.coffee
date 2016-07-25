@@ -20,7 +20,7 @@ App.room = App.cable.subscriptions.create "RoomChannel",
   window.sec=5
   countDown = ->
     window.min=parseInt window.min
-    window.sec=parseInt window.sec       
+    window.sec=parseInt window.sec
     tmWrite(window.sec-1)
     #alert("time")
     return

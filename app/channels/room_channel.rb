@@ -11,4 +11,9 @@ class RoomChannel < ApplicationCable::Channel
   def speak(data)
     Message.create! content: data['message']
   end
+    
+  def timer(data)
+    ActionCable.server.broadcast 'room_channel', time: data['time'] 
+  end
+
 end
