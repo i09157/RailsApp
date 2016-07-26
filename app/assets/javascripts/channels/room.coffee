@@ -10,6 +10,7 @@ App.room = App.cable.subscriptions.create "RoomChannel",
     $('#messages').append data['message']
     $('#times').text(data['time'])
 
+
   speak:(message) ->
       @perform 'speak', message: message
 
@@ -43,15 +44,17 @@ App.room = App.cable.subscriptions.create "RoomChannel",
     # window.document.timer.btn.value.disable=false
     clearInterval(window.timer1)
     window.timer1=''
+
     return
 
   $(document).on 'click', '[data-behavior~=room_timer]', (event)->
     cntStart()
     event.preventDefault()
-
+    window.flug = 1
 
   $(document).on 'keypress', '[data-behavior~=room_speaker]', (event) ->
-    if event.keyCode is 13 # return = send
+    if event.keyCode is 13 and window.flug is 1# return = send
         App.room.speak event.target.value
         # event.target.value = ''
+        window.flug = 0
         event.preventDefault()
