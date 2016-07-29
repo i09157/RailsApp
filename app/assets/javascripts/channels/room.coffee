@@ -19,7 +19,7 @@ App.room = App.cable.subscriptions.create "RoomChannel",
   timer:(time) ->
     @perform 'timer', time: time
 
-  
+
   window.timerflag = 0
 
   countDown = ->
@@ -51,7 +51,7 @@ App.room = App.cable.subscriptions.create "RoomChannel",
     window.timerflag = 0
     return
 
-  $(document).on 'click', '[data-behavior~=room_timer]', (event)-> 
+  $(document).on 'click', '[data-behavior~=room_timer]', (event)->
     if window.timerflag is 0
         cntStart()
         event.preventDefault()
