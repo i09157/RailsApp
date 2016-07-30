@@ -8,7 +8,10 @@ App.room = App.cable.subscriptions.create "RoomChannel",
 
   received: (data) ->
     $('#messages').append data['message']
-    if data['time'] > 0
+    if data['time'] == 10
+        window.flug = 1
+        window.timerflag = 1
+    else if data['time'] > 0 and data['time'] < 10
         window.timerflag = 1
     else
         window.timerflag = 0
@@ -31,7 +34,7 @@ App.room = App.cable.subscriptions.create "RoomChannel",
 
   cntStart = ->
     # window.document.timer.btn.value.disable=true
-    window.sec=5
+    window.sec=10
     App.room.timer window.sec
     window.timer1=setInterval(countDown,1000)
     return
@@ -57,7 +60,6 @@ App.room = App.cable.subscriptions.create "RoomChannel",
     if window.timerflag is 0
         cntStart()
         event.preventDefault()
-        window.flug = 1
 
   $(document).on 'keypress', '[data-behavior~=room_speaker]', (event) ->
     if event.keyCode is 13 and window.flug is 1# return = send

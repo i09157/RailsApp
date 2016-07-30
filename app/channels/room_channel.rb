@@ -37,7 +37,7 @@ class RoomChannel < ApplicationCable::Channel
     elsif data["time"] == 0 then
       ActionCable.server.broadcast 'room_channel', time: "finished!"
       @flug = 0
-      @lists = Message.where(created_at: 5  .second.ago..Time.now) #現時刻から二件
+      @lists = Message.where(created_at: 10.second.ago..Time.now) #現時刻から二件
       if @lists.count ==  2  then
         first,second = @lists
         @account1 =Account.find_by(email: first.email)
