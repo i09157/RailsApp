@@ -27,9 +27,7 @@ class RoomChannel < ApplicationCable::Channel
   # end
 
   def speak(data) #クライアントサイドから送信されたメッセージを受信
-    if @flug == 1 then
       Message.create! email: current_account.email ,content: data['message']
-    end
   end
 
   def timer(data)
