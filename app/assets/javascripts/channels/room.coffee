@@ -10,6 +10,8 @@ App.room = App.cable.subscriptions.create "RoomChannel",
     $('#messages').append data['message']
     if data['time'] > 0
         window.timerflag = 1
+    else
+        window.timerflag = 0
     $('#times').text(data['time'])
 
 
