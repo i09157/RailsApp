@@ -1,4 +1,7 @@
-<h1>Home</h1>
+<br><br><br><br>
+<div align="center">
+    <h1>Home</h1>
+    <br>
 
 <%#= link_to "Sign out", destroy_user_session_path, :method => :delete %>
 <html>
@@ -6,39 +9,50 @@
 <header>
     <nav>
         <% if account_signed_in? %>
-            <%= link_to 'プロフィール変更', edit_account_registration_path %>
-            <%= link_to 'ログアウト', destroy_account_session_path, method: :delete %>
-                  <td><%= current_account.email %></td>
-                  <td><%= current_account.win %>勝:</td>
-                  <td><%= current_account.lose %>負:</td>
-                  <td><%= current_account.draw %>分:</td>
-                  <td>rate<%= current_account.rate %></td>
-
+            <table>
+                <tr>
+                    <td><%= link_to 'Change Profile', edit_account_registration_path %></td>
+                    <td><%= link_to 'Log Out', destroy_account_session_path, method: :delete %></td>
+                </tr>
+            </table>
+            <br>
+            <table>
+                <tr>
+                    <td><%= current_account.email %></td>
+                    <td>Win:<%= current_account.win %></td>
+                    <td>Lose:<%= current_account.lose %></td>
+                    <td>Draw:<%= current_account.draw %></td>
+                    <td>rate:<%= current_account.rate %></td>
+                </tr>
+            </table>
         <% else %>
-            <%= link_to 'サインアップ', new_account_registration_path %>
-            <%= link_to 'ログイン', new_account_session_path %>
+            <table>
+                <tr>
+                    <td><%= link_to 'Sign Up', new_account_registration_path %></td>
+                    <td><%= link_to 'Log In', new_account_session_path %></td>
+                </tr>
+            </table>
         <% end %>
     </nav>
 </header>
 
-
-</br>
-
-<%= link_to '対戦する', rooms_show_path %>
+<br>
+<br>
+<h3><%= link_to 'JanKen', rooms_show_path %></h3>
 
 <p>
-
 <table>
-  <caption align="left">ユーザ一覧</caption>
+  <div align="center">------------------- User List -------------------</div>
+  <br>
   <thead>
     <tr>
       <th>Ranking</th>
-      <th>Email</th>
-      <th><%= sort_link(@search, :win,'WIN') %></th>
-      <th><%= sort_link(@search, :lose,'LOSE') %></th>
-      <th><%= sort_link(@search, :draw,'DRAW') %></th>
+      <th><div align="center">Email</div></th>
+      <th><%= sort_link(@search, :win,'-WIN-') %></th>
+      <th><%= sort_link(@search, :lose,'LOSE-') %></th>
+      <th><%= sort_link(@search, :draw,'DRAW-') %></th>
       <!-- <th>試合回数<th> -->
-      <th><%= sort_link(@search, :rate,'RATE') %></th>
+      <th><%= sort_link(@search, :rate,'RATE-') %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -61,3 +75,4 @@
 
 </body>
 </html>
+</div>
